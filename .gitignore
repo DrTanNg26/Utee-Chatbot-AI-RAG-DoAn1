@@ -218,3 +218,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+# Tài liệu tham khảo NCKH (chỉ dùng cục bộ trên máy)
+chatbot-for-docs-backend-dev/
+chatbot-for-docs-backend-main/
+.vscode/
