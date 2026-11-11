@@ -10,6 +10,7 @@ import sys
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 
+import requests
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
@@ -91,7 +92,8 @@ class UteeRagEngine:
         self,
         vectorstore_dir: Optional[Path] = None,
         llm_models: Optional[List[str]] = None,
-        confidence_threshold: float = 0.60
+        confidence_threshold: float = 0.60,
+        provider: Optional[str] = None
     ):
         self.confidence_threshold = confidence_threshold
         self.llm_models = llm_models or ["gemini-3.5-flash", "gemini-3.5-flash-lite", "gemini-3.8-flash"]
@@ -103,8 +105,14 @@ class UteeRagEngine:
         self.vector_store = UteeVectorStore()
         self.vector_store.load(self.vector_dir)
         
-        # 2. Khoi tao Client LLM
+        # 2. Xac dinh Provider: 'local' (Ollama tren GPU) hoac 'gemini' (Google Cloud)
         load_dotenv()
+        self.provider = (provider or os.getenv("LLM_PROVIDER", "gemini")).lower().strip()
+        self.local_model = os.getenv("LOCAL_LLM_MODEL", "qwen2.5:3b")
+        self.local_url = os.getenv("LOCAL_LLM_URL", "http://localhost:11434")
+
+        # 3. Khoi tao Gemini Client (dung lam chinh hoac fallback khi can)
+        self.gemini_client = None
         api_key = None
         for k_name in ["GEMINI_API_KEY4", "GEMINI_API_KEY5", "GEMINI_API_KEY6", "GEMINI_API_KEY7", "GEMINI_API_KEY8", "GEMINI_API_KEY9", "GEMINI_API_KEY10", "GEMINI_API_KEY", "GEMINI_API_KEY2", "GEMINI_API_KEY3"]:
             val = os.getenv(k_name)
@@ -112,20 +120,72 @@ class UteeRagEngine:
                 api_key = val.strip()
                 break
                 
-        if not api_key:
-            raise ValueError("Khong tim thay API key hop le de khoi tao LLM!")
-            
-        self.client = genai.Client(api_key=api_key)
+        if api_key:
+            self.gemini_client = genai.Client(api_key=api_key)
+        elif self.provider == "gemini":
+            raise ValueError("Khong tim thay API key hop le de khoi tao Gemini LLM!")
+
+        print(f"[RAG ENGINE] Che do hoat dong: LLM_PROVIDER = {self.provider.upper()}" + 
+              (f" (Model: {self.local_model} qua GPU RTX 5060)" if self.provider in ["local", "ollama"] else " (Gemini Cloud Flash)"))
 
     def _call_llm(self, prompt: str) -> str:
         """
-        Goi LLM voi co che Fallback tu dong giua cac model Flash
+        Dieu phoi goi LLM: uu tien Local GPU (Ollama) neu duoc cau hinh,
+        hoac goi Gemini Cloud API voi co che auto-fallback.
+        """
+        if self.provider in ["local", "ollama"]:
+            return self._call_ollama(prompt)
+        return self._call_gemini(prompt)
+
+    def _call_ollama(self, prompt: str) -> str:
+        """
+        Goi Local LLM qua REST API cua Ollama.
+        Tham so num_gpu=99 giup day 100% cac layer vao VRAM cua GPU RTX 5060.
+        """
+        try:
+            payload = {
+                "model": self.local_model,
+                "messages": [
+                    {"role": "user", "content": prompt}
+                ],
+                "stream": False,
+                "options": {
+                    "temperature": 0.2,
+                    "num_predict": 2500,
+                    "num_gpu": 99  # Day 100% layer vao GPU VRAM
+                }
+            }
+            resp = requests.post(f"{self.local_url}/api/chat", json=payload, timeout=180)
+            resp.raise_for_status()
+            data = resp.json()
+            return data.get("message", {}).get("content", "").strip()
+        except requests.exceptions.ConnectionError:
+            # Neu Ollama chua bat ma co Gemini Client -> tu dong fallback de khong bi crash
+            if self.gemini_client:
+                print("\n[CANH BAO]: Khong the ket noi Ollama localhost:11434! Tu dong chuyen sang Gemini Cloud API...")
+                return self._call_gemini(prompt)
+            raise RuntimeError(
+                f"Khong the ket noi den Ollama tai {self.local_url}. "
+                "Vui long kiem tra xem ung dung Ollama da duoc bat hay chua!"
+            )
+        except Exception as e:
+            if self.gemini_client:
+                print(f"\n[CANH BAO]: Loi Local LLM ({e}). Tu dong chuyen sang Gemini Cloud API...")
+                return self._call_gemini(prompt)
+            raise RuntimeError(f"Loi khi goi Local LLM ({self.local_model}): {e}")
+
+    def _call_gemini(self, prompt: str) -> str:
+        """
+        Goi LLM Gemini Cloud voi co che Fallback tu dong giua cac model Flash
         de phong truong hop 1 model bi 503 qua tai tam thoi.
         """
+        if not self.gemini_client:
+            raise RuntimeError("Gemini Client chua duoc khoi tao do thieu GEMINI_API_KEY.")
+
         last_error = None
         for model_name in self.llm_models:
             try:
-                response = self.client.models.generate_content(
+                response = self.gemini_client.models.generate_content(
                     model=model_name,
                     contents=prompt,
                     config=types.GenerateContentConfig(
@@ -139,7 +199,7 @@ class UteeRagEngine:
                 last_error = e
                 continue
                 
-        raise RuntimeError(f"Khong the goi bat ky LLM nao trong danh sach ({last_error})")
+        raise RuntimeError(f"Khong the goi bat ky Gemini LLM nao trong danh sach ({last_error})")
 
     def answer_question(self, query: str, top_k: int = 4) -> Dict[str, Any]:
         """

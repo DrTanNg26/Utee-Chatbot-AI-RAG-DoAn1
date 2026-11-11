@@ -1,0 +1,353 @@
+[
+  {
+    "id": 1,
+    "group": "Học vụ & Tín chỉ",
+    "category": "academic_regulations",
+    "question": "Sinh viên đại học chính quy được đăng ký tối thiểu và tối đa bao nhiêu tín chỉ trong một học kỳ chính?",
+    "expected_behavior": "answer_with_sources",
+    "expected_source_keywords": ["Quy chế đào tạo", "Đăng ký học tập"],
+    "key_ground_truth_points": [
+      "Quy định số tín chỉ tối thiểu (thường 10-14 tín chỉ tùy xếp loại học lực)",
+      "Quy định số tín chỉ tối đa sinh viên được phép đăng ký trong kỳ chính"
+    ]
+  },
+  {
+    "id": 2,
+    "group": "Học vụ & Tín chỉ",
+    "category": "academic_regulations",
+    "question": "Điều kiện để sinh viên được xét công nhận tốt nghiệp đại học chính quy tại UTT là gì?",
+    "expected_behavior": "answer_with_sources",
+    "expected_source_keywords": ["Quy chế đào tạo", "Công nhận tốt nghiệp"],
+    "key_ground_truth_points": [
+      "Tích lũy đủ số tín chỉ và học phần quy định trong chương trình đào tạo",
+      "Điểm trung bình chung tích lũy toàn khóa đạt yêu cầu (từ 2.00 trở lên theo thang điểm 4)",
+      "Đạt chuẩn đầu ra Ngoại ngữ, Tin học, Giáo dục thể chất, Giáo dục quốc phòng",
+      "Không bị truy cứu trách nhiệm hình sự hoặc đang trong thời gian kỷ luật"
+    ]
+  },
+  {
+    "id": 3,
+    "group": "Học vụ & Tín chỉ",
+    "category": "academic_regulations",
+    "question": "Khi nào sinh viên bị cảnh báo kết quả học tập (cảnh báo học vụ)?",
+    "expected_behavior": "answer_with_sources",
+    "expected_source_keywords": ["Quy chế đào tạo", "Cảnh báo học tập"],
+    "key_ground_truth_points": [
+      "Điểm trung bình học kỳ hoặc điểm trung bình tích lũy dưới ngưỡng quy định",
+      "Số lần cảnh báo tối đa trước khi bị buộc thôi học"
+    ]
+  },
+  {
+    "id": 4,
+    "group": "Học vụ & Tín chỉ",
+    "category": "academic_regulations",
+    "question": "Sinh viên muốn xin hoãn thi kết thúc học phần do ốm đau thì cần nộp đơn và minh chứng khi nào?",
+    "expected_behavior": "answer_with_sources",
+    "expected_source_keywords": ["Quy chế đào tạo", "Thi kết thúc học phần", "hoãn thi"],
+    "key_ground_truth_points": [
+      "Phải nộp đơn và giấy xác nhận y tế/bệnh viện trước hoặc ngay sau buổi thi theo quy định",
+      "Thời gian giải quyết thi bổ sung vào kỳ thi sau hoặc đợt thi phụ"
+    ]
+  },
+  {
+    "id": 5,
+    "group": "Học vụ & Tín chỉ",
+    "category": "academic_regulations",
+    "question": "Quy định về việc học cải thiện điểm và học lại đối với sinh viên như thế nào?",
+    "expected_behavior": "answer_with_sources",
+    "expected_source_keywords": ["Quy chế đào tạo", "Học lại", "Cải thiện"],
+    "key_ground_truth_points": [
+      "Điểm F bắt buộc phải học lại",
+      "Điểm D hoặc D+ được phép đăng ký học cải thiện điểm",
+      "Điểm học phần sau khi học cải thiện sẽ thay thế điểm cũ để tính điểm tích lũy"
+    ]
+  },
+  {
+    "id": 6,
+    "group": "Học bổng & Hỗ trợ tài chính",
+    "category": "scholarship",
+    "question": "Tiêu chuẩn về điểm học tập và rèn luyện để được xét học bổng khuyến khích học tập loại Giỏi?",
+    "expected_behavior": "answer_with_sources",
+    "expected_source_keywords": ["học bổng", "Quy định học bổng khuyến khích"],
+    "key_ground_truth_points": [
+      "Điểm trung bình chung học tập (TBCHT) đạt từ 3.20 đến 3.59",
+      "Điểm rèn luyện đạt loại Tốt trở lên",
+      "Không vi phạm kỷ luật từ khiển trách trở lên trong học kỳ xét"
+    ]
+  },
+  {
+    "id": 7,
+    "group": "Học bổng & Hỗ trợ tài chính",
+    "category": "scholarship",
+    "question": "Tiêu chuẩn điểm học tập và rèn luyện để đạt học bổng loại Xuất sắc là bao nhiêu?",
+    "expected_behavior": "answer_with_sources",
+    "expected_source_keywords": ["học bổng", "Quy định học bổng khuyến khích"],
+    "key_ground_truth_points": [
+      "Điểm TBCHT từ 3.60 đến 4.00",
+      "Điểm rèn luyện đạt loại Xuất sắc",
+      "Không vi phạm kỷ luật"
+    ]
+  },
+  {
+    "id": 8,
+    "group": "Học bổng & Hỗ trợ tài chính",
+    "category": "scholarship",
+    "question": "Sinh viên thuộc diện chính sách hoặc trợ cấp xã hội có được xét học bổng khuyến khích học tập không?",
+    "expected_behavior": "answer_with_sources",
+    "expected_source_keywords": ["học bổng", "đối tượng", "chính sách"],
+    "key_ground_truth_points": [
+      "Vẫn được xét và cấp học bổng khuyến khích học tập như sinh viên bình thường nếu đủ điều kiện về kết quả học tập và rèn luyện"
+    ]
+  },
+  {
+    "id": 9,
+    "group": "Học bổng & Hỗ trợ tài chính",
+    "category": "scholarship",
+    "question": "Học bổng khuyến khích học tập được xét và chi trả theo năm học hay theo từng học kỳ?",
+    "expected_behavior": "answer_with_sources",
+    "expected_source_keywords": ["học bổng", "học kỳ"],
+    "key_ground_truth_points": [
+      "Xét và cấp theo từng học kỳ chính (học kỳ 1 và học kỳ 2 trong năm học)"
+    ]
+  },
+  {
+    "id": 10,
+    "group": "Học bổng & Hỗ trợ tài chính",
+    "category": "scholarship",
+    "question": "Sinh viên hệ liên thông chính quy cần điều kiện gì để được xét học bổng?",
+    "expected_behavior": "answer_with_sources",
+    "expected_source_keywords": ["học bổng", "liên thông"],
+    "key_ground_truth_points": [
+      "Điểm TBCHT từ 3.60 trở lên",
+      "Điểm rèn luyện loại Xuất sắc",
+      "Không vi phạm kỷ luật trong kỳ xét"
+    ]
+  },
+  {
+    "id": 11,
+    "group": "Điểm rèn luyện & Hành chính",
+    "category": "conduct_and_admin",
+    "question": "Khung điểm và các mức xếp loại điểm rèn luyện của sinh viên UTT được phân chia như thế nào?",
+    "expected_behavior": "answer_with_sources",
+    "expected_source_keywords": ["rèn luyện", "xếp loại", "điểm rèn luyện"],
+    "key_ground_truth_points": [
+      "Xuất sắc: từ 90 đến 100 điểm",
+      "Tốt: từ 80 đến 89 điểm",
+      "Khá: từ 65 đến 79 điểm",
+      "Trung bình: từ 50 đến 64 điểm",
+      "Yếu: từ 35 đến 49 điểm, Kém: dưới 35 điểm"
+    ]
+  },
+  {
+    "id": 12,
+    "group": "Điểm rèn luyện & Hành chính",
+    "category": "conduct_and_admin",
+    "question": "Sinh viên bị xếp loại rèn luyện Yếu hoặc Kém trong 2 học kỳ liên tiếp sẽ bị xử lý kỷ luật gì?",
+    "expected_behavior": "answer_with_sources",
+    "expected_source_keywords": ["rèn luyện", "kỷ luật", "kém"],
+    "key_ground_truth_points": [
+      "Bị tạm đình chỉ học tập ít nhất một học kỳ chính hoặc xem xét buộc thôi học nếu tái phạm"
+    ]
+  },
+  {
+    "id": 13,
+    "group": "Điểm rèn luyện & Hành chính",
+    "category": "conduct_and_admin",
+    "question": "Sinh viên muốn xin giấy xác nhận sinh viên để vay vốn ngân hàng chính sách thì làm thủ tục qua đâu?",
+    "expected_behavior": "answer_with_sources",
+    "expected_source_keywords": ["thủ tục hành chính", "xác nhận sinh viên", "một cửa"],
+    "key_ground_truth_points": [
+      "Làm thủ tục hành chính một cửa qua cổng dịch vụ công/phần mềm sinh viên hoặc Bộ phận Một cửa / Phòng Đào tạo"
+    ]
+  },
+  {
+    "id": 14,
+    "group": "Điểm rèn luyện & Hành chính",
+    "category": "conduct_and_admin",
+    "question": "Thủ tục và hồ sơ cần chuẩn bị khi sinh viên muốn xin nghỉ học tạm thời (bảo lưu kết quả học tập)?",
+    "expected_behavior": "answer_with_sources",
+    "expected_source_keywords": ["tạm hoãn", "nghỉ học tạm thời", "bảo lưu"],
+    "key_ground_truth_points": [
+      "Đơn xin nghỉ học tạm thời có xác nhận của gia đình",
+      "Giấy tờ minh chứng lý do (nghĩa vụ quân sự, điều trị bệnh viện, hoàn cảnh gia đình đặc biệt)",
+      "Quy định thời gian nghỉ học tạm thời được tính vào tổng thời gian học tập tối đa"
+    ]
+  },
+  {
+    "id": 15,
+    "group": "Điểm rèn luyện & Hành chính",
+    "category": "conduct_and_admin",
+    "question": "Sinh viên bị mất thẻ sinh viên thì cần làm những bước gì để được cấp lại?",
+    "expected_behavior": "answer_with_sources",
+    "expected_source_keywords": ["thẻ sinh viên", "cấp lại thẻ", "thủ tục"],
+    "key_ground_truth_points": [
+      "Nộp đơn xin cấp lại thẻ sinh viên tại Bộ phận Một cửa hoặc nộp trực tuyến qua cổng hành chính điện tử sinh viên"
+    ]
+  },
+  {
+    "id": 16,
+    "group": "Chương trình đào tạo K73 CNTT",
+    "category": "curriculum_k73",
+    "question": "Tổng số tín chỉ tích lũy toàn khóa của chương trình đào tạo ngành Công nghệ thông tin K73 là bao nhiêu?",
+    "expected_behavior": "answer_with_sources",
+    "expected_source_keywords": ["Công nghệ thông tin", "K73", "Chương trình đào tạo", "tín chỉ"],
+    "key_ground_truth_points": [
+      "Tổng số tín chỉ đào tạo trình độ đại học ngành CNTT K73 (khoảng 145 - 150 tín chỉ bao gồm các khối kiến thức)"
+    ]
+  },
+  {
+    "id": 17,
+    "group": "Chương trình đào tạo K73 CNTT",
+    "category": "curriculum_k73",
+    "question": "Học phần Toán 1 (Giải tích 1) ngành CNTT K73 có khối lượng bao nhiêu tín chỉ?",
+    "expected_behavior": "answer_with_sources",
+    "expected_source_keywords": ["Toán 1", "Toán", "K73"],
+    "key_ground_truth_points": [
+      "Khối lượng tín chỉ (lý thuyết, bài tập, thực hành) của học phần Toán 1"
+    ]
+  },
+  {
+    "id": 18,
+    "group": "Chương trình đào tạo K73 CNTT",
+    "category": "curriculum_k73",
+    "question": "Học phần Cấu trúc dữ liệu và giải thuật yêu cầu học phần tiên quyết hoặc học trước là học phần nào?",
+    "expected_behavior": "answer_with_sources",
+    "expected_source_keywords": ["Cấu trúc dữ liệu", "tiên quyết", "học trước"],
+    "key_ground_truth_points": [
+      "Học phần tiên quyết hoặc học trước thường là Tin học đại cương hoặc Cơ sở lập trình / Ngôn ngữ lập trình C/C++"
+    ]
+  },
+  {
+    "id": 19,
+    "group": "Chương trình đào tạo K73 CNTT",
+    "category": "curriculum_k73",
+    "question": "Học phần Thực tập tốt nghiệp ngành Công nghệ thông tin có bao nhiêu tín chỉ và diễn ra vào học kỳ nào?",
+    "expected_behavior": "answer_with_sources",
+    "expected_source_keywords": ["Thực tập tốt nghiệp", "Công nghệ thông tin", "tín chỉ"],
+    "key_ground_truth_points": [
+      "Số tín chỉ của học phần thực tập",
+      "Kế hoạch thực hiện ở năm cuối (học kỳ 7 hoặc học kỳ 8)"
+    ]
+  },
+  {
+    "id": 20,
+    "group": "Chương trình đào tạo K73 CNTT",
+    "category": "curriculum_k73",
+    "question": "Chuẩn đầu ra Ngoại ngữ (tiếng Anh) áp dụng cho sinh viên tốt nghiệp ngành Công nghệ thông tin là gì?",
+    "expected_behavior": "answer_with_sources",
+    "expected_source_keywords": ["chuẩn đầu ra", "ngoại ngữ", "tiếng Anh", "TOEIC", "Bậc 3"],
+    "key_ground_truth_points": [
+      "Đạt chứng chỉ tiếng Anh theo Khung năng lực ngoại ngữ 6 bậc (Bậc 3 / tương đương TOEIC/VSTEP theo quy định UTT)"
+    ]
+  },
+  {
+    "id": 21,
+    "group": "Giao tiếp & Danh tính",
+    "category": "greeting_identity",
+    "question": "Bạn là ai?",
+    "expected_behavior": "quick_intent_greeting",
+    "expected_source_keywords": [],
+    "key_ground_truth_points": [
+      "UTee là trợ lý ảo AI hỗ trợ sinh viên Trường Đại học Công nghệ GTVT (UTT)"
+    ]
+  },
+  {
+    "id": 22,
+    "group": "Giao tiếp & Danh tính",
+    "category": "greeting_identity",
+    "question": "UTee có thể hỗ trợ sinh viên những nội dung gì?",
+    "expected_behavior": "quick_intent_greeting",
+    "expected_source_keywords": [],
+    "key_ground_truth_points": [
+      "Tra cứu quy chế đào tạo, học bổng, điểm rèn luyện, đăng ký tín chỉ, biểu mẫu thủ tục hành chính và chương trình đào tạo K73"
+    ]
+  },
+  {
+    "id": 23,
+    "group": "Giao tiếp & Danh tính",
+    "category": "greeting_identity",
+    "question": "Xin chào UTee, mình là tân sinh viên K75!",
+    "expected_behavior": "quick_intent_greeting",
+    "expected_source_keywords": [],
+    "key_ground_truth_points": [
+      "Lời chào đón thân thiện, nhiệt tình hỗ trợ sinh viên mới làm quen môi trường đại học"
+    ]
+  },
+  {
+    "id": 24,
+    "group": "Giao tiếp & Danh tính",
+    "category": "greeting_identity",
+    "question": "Trường UTT là trường gì, tên đầy đủ là gì?",
+    "expected_behavior": "answer_with_sources",
+    "expected_source_keywords": ["Đại học Công nghệ Giao thông vận tải", "UTT"],
+    "key_ground_truth_points": [
+      "Trường Đại học Công nghệ Giao thông vận tải (tên tiếng Anh: University of Transport Technology)"
+    ]
+  },
+  {
+    "id": 25,
+    "group": "Giao tiếp & Danh tính",
+    "category": "greeting_identity",
+    "question": "Cảm ơn UTee nhiều nhé, tạm biệt bạn!",
+    "expected_behavior": "quick_intent_greeting",
+    "expected_source_keywords": [],
+    "key_ground_truth_points": [
+      "Lời chào tạm biệt lịch sự, chúc sinh viên học tập tốt"
+    ]
+  },
+  {
+    "id": 26,
+    "group": "Bẫy ngoài phạm vi (Safe Refusal)",
+    "category": "out_of_domain",
+    "question": "Hướng dẫn tôi cách nấu món phở bò Hà Nội chuẩn vị truyền thống.",
+    "expected_behavior": "safe_refusal",
+    "expected_source_keywords": [],
+    "key_ground_truth_points": [
+      "Kích hoạt Safe Refusal: Từ chối lịch sự vì câu hỏi ngoài phạm vi tri thức quy chế và đào tạo của Nhà trường"
+    ]
+  },
+  {
+    "id": 27,
+    "group": "Bẫy ngoài phạm vi (Safe Refusal)",
+    "category": "out_of_domain",
+    "question": "Viết giúp tôi một đoạn code Python sử dụng thư viện pandas để vẽ biểu đồ tài chính.",
+    "expected_behavior": "safe_refusal",
+    "expected_source_keywords": [],
+    "key_ground_truth_points": [
+      "Kích hoạt Safe Refusal: Không sinh code ngoài lề, từ chối an toàn để tập trung vào mục tiêu hỗ trợ quy chế UTT"
+    ]
+  },
+  {
+    "id": 28,
+    "group": "Bẫy ngoài phạm vi (Safe Refusal)",
+    "category": "out_of_domain",
+    "question": "Dự báo thời tiết ngày mai ở Hà Nội có mưa không?",
+    "expected_behavior": "safe_refusal",
+    "expected_source_keywords": [],
+    "key_ground_truth_points": [
+      "Kích hoạt Safe Refusal: Từ chối do không có dữ liệu thời tiết trong quy chế UTT"
+    ]
+  },
+  {
+    "id": 29,
+    "group": "Bẫy ngoài phạm vi (Safe Refusal)",
+    "category": "out_of_domain",
+    "question": "Tư vấn giúp tôi nên mua điện thoại iPhone 16 Pro Max hay Samsung Galaxy S24 Ultra?",
+    "expected_behavior": "safe_refusal",
+    "expected_source_keywords": [],
+    "key_ground_truth_points": [
+      "Kích hoạt Safe Refusal: Từ chối do không thuộc phạm vi đào tạo/học vụ sinh viên"
+    ]
+  },
+  {
+    "id": 30,
+    "group": "Bẫy ngoài phạm vi (Safe Refusal)",
+    "category": "out_of_domain",
+    "question": "Giải thích chi tiết thuyết tương đối hẹp của nhà vật lý Albert Einstein.",
+    "expected_behavior": "safe_refusal",
+    "expected_source_keywords": [],
+    "key_ground_truth_points": [
+      "Kích hoạt Safe Refusal: Từ chối do không thuộc quy chế, quy định học vụ của trường UTT"
+    ]
+  }
+]
