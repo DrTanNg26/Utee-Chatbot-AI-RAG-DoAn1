@@ -76,6 +76,17 @@ def detect_quick_intent(query: str) -> Optional[str]:
     if re.search(r"^(cảm ơn|thanks|thank you|ok cảm ơn|cảm ơn bạn|tks)\b", q):
         return "Không có gì đâu nè! Chúc bạn có một ngày học tập thật hiệu quả và đạt kết quả cao tại UTT nhé. Nếu cần tra cứu thêm điều gì, cứ nhắn cho UTee nha!"
 
+    # 5. Hoi UTT la gi / Gioi thieu truong UTT
+    if re.search(r"\b(utt là gì|utt la gi|trường utt là gì|truong utt la gi|utt là trường gì|truong utt la truong gi|giới thiệu về utt|gioi thieu ve utt)\b", q):
+        return (
+            "UTT là tên viết tắt của **Trường Đại học Công nghệ Giao thông Vận tải** "
+            "(tên tiếng Anh: *University of Transport Technology*).\n\n"
+            "Trường là cơ sở giáo dục đại học công lập trực thuộc Bộ Giao thông Vận tải, "
+            "với sứ mệnh đào tạo nguồn nhân lực chất lượng cao trong các lĩnh vực Công nghệ thông tin, "
+            "Kỹ thuật giao thông, Logistics, Kinh tế và Quản trị.\n\n"
+            "Bạn đang cần tìm hiểu về quy chế đào tạo, học bổng hay học phần nào của trường UTT?"
+        )
+
     return None
 
 
@@ -148,6 +159,7 @@ class UteeRagEngine:
                 "messages": [
                     {"role": "user", "content": prompt}
                 ],
+                "think": False,  # Tat che do thinking de model sinh cau tra loi truc tiep, khong bi can kiet token
                 "stream": False,
                 "options": {
                     "temperature": 0.2,
@@ -158,7 +170,12 @@ class UteeRagEngine:
             resp = requests.post(f"{self.local_url}/api/chat", json=payload, timeout=180)
             resp.raise_for_status()
             data = resp.json()
-            return data.get("message", {}).get("content", "").strip()
+            msg = data.get("message", {})
+            content = msg.get("content", "").strip()
+            # Neu content bi rong (do model co the de cau tra loi trong thinking) -> trich xuat tu thinking
+            if not content and msg.get("thinking"):
+                content = msg.get("thinking", "").strip()
+            return content
         except requests.exceptions.ConnectionError:
             # Neu Ollama chua bat ma co Gemini Client -> tu dong fallback de khong bi crash
             if self.gemini_client:
