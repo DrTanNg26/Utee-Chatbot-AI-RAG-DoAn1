@@ -1,0 +1,18 @@
+# Local environment & secrets
+.env
+.venv/
+venv/
+
+# Local SQLite dev/test databases
+*.db
+*.db-journal
+*.sqlite3
+
+# Runtime uploaded files & synced FAISS working copy
+app/data/
+app/vectorstores/
+
+# Python cache
+__pycache__/
+*.py[cod]
+.pytest_cache/

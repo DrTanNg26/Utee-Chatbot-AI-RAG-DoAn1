@@ -1,0 +1,22 @@
+{
+  "botName": "UTee AI Companion",
+  "welcomeMessage": "Xin chào cậu! Tớ là UTee - Chatbot AI đồng hành cùng sinh viên Trường Đại học Công nghệ Giao thông vận tải (UTT). Cậu cần tớ hỗ trợ tra cứu quy chế, học bổng, lịch học hay kết quả học tập nào hôm nay?",
+  "fallbackMessage": "Hiện tại hệ thống chưa tìm thấy quy định chính thức về vấn đề này trong kho tài liệu của UTT. Cậu vui lòng liên hệ Phòng Đào tạo, Phòng Công tác Sinh viên hoặc Cố vấn học tập để được hướng dẫn chính xác nhất nha!",
+  "model": "gemini-2.5-flash",
+  "fallbackModels": [
+    "gemini-2.0-flash",
+    "gemini-2.5-flash-lite"
+  ],
+  "embeddingModel": "gemini-embedding-001",
+  "embeddingDimension": 768,
+  "temperature": 0.2,
+  "maxTokens": 650,
+  "topP": 0.9,
+  "retrieverKSize": 4,
+  "similarityThreshold": 0.56,
+  "contextWindowTurns": 4,
+  "enableEmojis": false,
+  "responseDelay": 0,
+  "enableLogging": true,
+  "logLevel": "info"
+}
